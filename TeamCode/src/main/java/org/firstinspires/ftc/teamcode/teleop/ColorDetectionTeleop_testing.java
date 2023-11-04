@@ -19,7 +19,7 @@
  * SOFTWARE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -36,8 +36,8 @@ import org.openftc.easyopencv.OpenCvPipeline;
 import org.openftc.easyopencv.OpenCvWebcam;
 import org.firstinspires.ftc.teamcode.vision.ColorDetector;
 
-@TeleOp(name = "Vison: HSV WC INSPIRED MODE TEST", group = "Concept")
-public class WebcamExample extends LinearOpMode
+@TeleOp(name = "Custom Prop Detection teleop", group = "Concept")
+public class ColorDetectionTeleop_testing extends LinearOpMode
 {
     OpenCvWebcam webcam;
 

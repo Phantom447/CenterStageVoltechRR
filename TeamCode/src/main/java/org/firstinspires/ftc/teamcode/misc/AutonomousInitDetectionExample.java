@@ -19,12 +19,14 @@
  * SOFTWARE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.misc;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.teleop.ColorDetectionTeleop_testing;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
@@ -36,6 +38,7 @@ import org.openftc.easyopencv.OpenCvWebcam;
  * command is issued. The pipeline is re-used from SkystoneDeterminationExample
  */
 @TeleOp(name = "Vison test one", group = "Concept")
+@Disabled
 public class AutonomousInitDetectionExample extends LinearOpMode
 {
     OpenCvWebcam webcam;
@@ -49,7 +52,7 @@ public class AutonomousInitDetectionExample extends LinearOpMode
          * NOTE: Many comments have been omitted from this sample for the
          * sake of conciseness. If you're just starting out with EasyOpenCv,
          * you should take a look at {@link InternalCamera1Example} or its
-         * webcam counterpart, {@link WebcamExample} first.
+         * webcam counterpart, {@link ColorDetectionTeleop_testing} first.
          */
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());

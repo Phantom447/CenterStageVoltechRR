@@ -19,12 +19,13 @@
  * SOFTWARE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.misc;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.WebcamExample;
+import org.firstinspires.ftc.teamcode.teleop.ColorDetectionTeleop_testing;
 import org.firstinspires.ftc.teamcode.vision.ColorDetector;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -44,6 +45,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
  * the sample regions over the first 3 stones.
  */
 @TeleOp
+@Disabled
 public class SkystoneDeterminationExample extends LinearOpMode
 {
     OpenCvInternalCamera phoneCam;
@@ -56,7 +58,7 @@ public class SkystoneDeterminationExample extends LinearOpMode
          * NOTE: Many comments have been omitted from this sample for the
          * sake of conciseness. If you're just starting out with EasyOpenCv,
          * you should take a look at {@link InternalCamera1Example} or its
-         * webcam counterpart, {@link WebcamExample} first.
+         * webcam counterpart, {@link ColorDetectionTeleop_testing} first.
          */
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());

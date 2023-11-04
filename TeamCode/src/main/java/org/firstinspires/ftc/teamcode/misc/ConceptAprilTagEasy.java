@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.misc;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -77,6 +77,7 @@ public class ConceptAprilTagEasy extends LinearOpMode {
     private VisionPortal visionPortal;
 
     @Override
+
     public void runOpMode() {
 
         initAprilTag();
