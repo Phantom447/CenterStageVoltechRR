@@ -23,16 +23,19 @@ public class ColorDetector extends OpenCvPipeline {
     }
     private Location location;
 
-    static double PERCENT_COLOR_THRESHOLD = 0.4;
+    static double PERCENT_COLOR_THRESHOLD = .08;
 
     /*
      * The core values which define the location and size of the sample regions
      */
-    static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(109,98);
-    static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(181,98);
-    static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(253,98);
-    static final int REGION_WIDTH = 50;
-    static final int REGION_HEIGHT = 50;
+    static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(1,70);
+    static final Point REGION1_TOPLEFT_ANCHOR_POINT2 = new Point(213,475);
+    static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(213.5,70);
+    static final Point REGION2_TOPLEFT_ANCHOR_POINT2 = new Point(426,475);
+    static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(426.5,70);
+    static final Point REGION3_TOPLEFT_ANCHOR_POINT2 = new Point(639,475);
+    static final int REGION_WIDTH = 200;
+    static final int REGION_HEIGHT = 350;
 
     /*
      * Points which actually define the sample region rectangles, derived from above values
@@ -57,18 +60,28 @@ public class ColorDetector extends OpenCvPipeline {
     Point region1_pointB = new Point(
             REGION1_TOPLEFT_ANCHOR_POINT.x + REGION_WIDTH,
             REGION1_TOPLEFT_ANCHOR_POINT.y + REGION_HEIGHT);
+    Point region1_pointB_alt = new Point(
+            REGION1_TOPLEFT_ANCHOR_POINT2.x,
+            REGION1_TOPLEFT_ANCHOR_POINT2.y);
     Point region2_pointA = new Point(
             REGION2_TOPLEFT_ANCHOR_POINT.x,
             REGION2_TOPLEFT_ANCHOR_POINT.y);
     Point region2_pointB = new Point(
             REGION2_TOPLEFT_ANCHOR_POINT.x + REGION_WIDTH,
             REGION2_TOPLEFT_ANCHOR_POINT.y + REGION_HEIGHT);
+
+    Point region2_pointB_alt = new Point(
+            REGION2_TOPLEFT_ANCHOR_POINT2.x + REGION_WIDTH,
+            REGION2_TOPLEFT_ANCHOR_POINT2.y + REGION_HEIGHT);
     Point region3_pointA = new Point(
             REGION3_TOPLEFT_ANCHOR_POINT.x,
             REGION3_TOPLEFT_ANCHOR_POINT.y);
     Point region3_pointB = new Point(
             REGION3_TOPLEFT_ANCHOR_POINT.x + REGION_WIDTH,
             REGION3_TOPLEFT_ANCHOR_POINT.y + REGION_HEIGHT);
+    Point region3_pointB_alt = new Point(
+            REGION3_TOPLEFT_ANCHOR_POINT2.x ,
+            REGION3_TOPLEFT_ANCHOR_POINT2.y);
 
 
     @Override
@@ -97,27 +110,30 @@ public class ColorDetector extends OpenCvPipeline {
 //        telemetry.addData("Center raw value",  Core.sumElems(center).val[0]);
 //        telemetry.addData("Right raw value",  Core.sumElems(right).val[0]);
         telemetry.addData("Left percentage", Math.round(leftValue * 100) + "%");
-        telemetry.addData("Center percentage", Math.round(centerValue * 100) + '%');
+        telemetry.addData("Center percentage", Math.round(centerValue * 100) + "%");
         telemetry.addData("Right percentage", Math.round(rightValue * 100) + "%");
 
-        boolean PROPLEFT = leftValue > PERCENT_COLOR_THRESHOLD;
-        boolean propCENTER = centerValue                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         > PERCENT_COLOR_THRESHOLD;
-        boolean PROPRIGHT = rightValue > PERCENT_COLOR_THRESHOLD;
+        boolean PROPLEFT = leftValue > PERCENT_COLOR_THRESHOLD && leftValue > centerValue && leftValue > rightValue;
+        boolean propCENTER = centerValue > PERCENT_COLOR_THRESHOLD && centerValue > rightValue && centerValue > leftValue;
+        boolean PROPRIGHT = rightValue > PERCENT_COLOR_THRESHOLD && rightValue > centerValue && rightValue > leftValue;
 
         if (propCENTER && PROPRIGHT && PROPLEFT) {
             location = Location.NOT_FOUND;
-            telemetry.addData("Skystone Location", "not found");
+            telemetry.addData("prop Location", "not found");
         }
         else if (propCENTER) {
             location = Location.CENTER;
-            telemetry.addData("Skystone Location", "Center");
+            telemetry.addData("prop Location", "Center");
         }
         else if(PROPLEFT){
             location = Location.LEFT;
-            telemetry.addData("Skystone Location", "left");
-        }else{
+            telemetry.addData("prop Location", "left");
+        }else if(PROPRIGHT){
             location = Location.RIGHT;
-            telemetry.addData("Skystone Location", "left");
+            telemetry.addData("prop Location", "right");
+        } else {
+            location = Location.NOT_FOUND;
+            telemetry.addData("prop Location", "not Found");
         }
         telemetry.update();
 
