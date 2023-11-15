@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.config;
 
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
@@ -79,8 +79,11 @@ public class RobotHardware {
     public DcMotorEx LB; //left back(chassis)
     public DcMotorEx RF; //right front(chassis)
     public DcMotorEx RB; //right back(chassis)
-    public static DcMotorEx RTL; //right motor(lift)
-    public DcMotorEx LTL; //left motor(lift)
+    public static DcMotorEx liftright; //right motor(lift)
+    public DcMotorEx liftleft; //left motor(lift)
+
+    public DcMotorEx INTAKE;
+
     public Servo claw; //claw
     public DistanceSensor sensor;
 
@@ -149,9 +152,9 @@ public class RobotHardware {
         LB = myOpMode.hardwareMap.get(DcMotorEx.class, "LB");
         RF  = myOpMode.hardwareMap.get(DcMotorEx.class, "RF");
         RB = myOpMode.hardwareMap.get(DcMotorEx.class, "RB");
-        RTL = myOpMode.hardwareMap.get(DcMotorEx.class, "RTL");
-        LTL = myOpMode.hardwareMap.get(DcMotorEx.class, "LTL");
-        claw = myOpMode.hardwareMap.get(Servo.class, "CLAW");
+        liftright = myOpMode.hardwareMap.get(DcMotorEx.class, "RTL");
+        liftleft = myOpMode.hardwareMap.get(DcMotorEx.class, "LTL");
+//        claw = myOpMode.hardwareMap.get(Servo.class, "CLAW");
 
 //        sensor = myOpMode.hardwareMap.get(DistanceSensor.class, "distance sensor");
 
@@ -162,24 +165,24 @@ public class RobotHardware {
         LB.setDirection(DcMotor.Direction.FORWARD);
         RF.setDirection(DcMotor.Direction.REVERSE);
         RB.setDirection(DcMotor.Direction.REVERSE);
-        RTL.setDirection(DcMotorEx.Direction.FORWARD);
-        LTL.setDirection(DcMotorEx.Direction.FORWARD);
+        liftright.setDirection(DcMotorEx.Direction.FORWARD);
+        liftleft.setDirection(DcMotorEx.Direction.FORWARD);
 
         //ALL MOTORS RUN WITH ENCODERS
         LF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         LB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        RTL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        LTL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        liftright.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        liftleft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         LF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         LB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        RTL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        LTL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        claw.setPosition(1);
+        liftright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        liftleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        claw.setPosition(1);
         setMotorPowers(0);
 
         LF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -191,8 +194,8 @@ public class RobotHardware {
         LF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        RTL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        LTL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        liftright.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        liftleft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
         // Send telemetry message to signify robot waiting;
@@ -205,9 +208,9 @@ public class RobotHardware {
         LB = myOpMode.hardwareMap.get(DcMotorEx.class, "LB");
         RF  = myOpMode.hardwareMap.get(DcMotorEx.class, "RF");
         RB = myOpMode.hardwareMap.get(DcMotorEx.class, "RB");
-        RTL = myOpMode.hardwareMap.get(DcMotorEx.class, "RTL");
-        LTL = myOpMode.hardwareMap.get(DcMotorEx.class, "LTL");
-        claw = myOpMode.hardwareMap.get(Servo.class, "CLAW");
+        liftright = myOpMode.hardwareMap.get(DcMotorEx.class, "RTL");
+        liftleft = myOpMode.hardwareMap.get(DcMotorEx.class, "LTL");
+//        claw = myOpMode.hardwareMap.get(Servo.class, "CLAW");
 
 //        sensor = myOpMode.hardwareMap.get(DistanceSensor.class, "distance sensor");
 
@@ -218,24 +221,24 @@ public class RobotHardware {
         LB.setDirection(DcMotor.Direction.FORWARD);
         RF.setDirection(DcMotor.Direction.REVERSE);
         RB.setDirection(DcMotor.Direction.REVERSE);
-        RTL.setDirection(DcMotorEx.Direction.FORWARD);
-        LTL.setDirection(DcMotorEx.Direction.FORWARD);
+        liftright.setDirection(DcMotorEx.Direction.FORWARD);
+        liftleft.setDirection(DcMotorEx.Direction.FORWARD);
 
         //ALL MOTORS RUN WITH ENCODERS
         LF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         LB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        RTL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        LTL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         LF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         LB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        RTL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        LTL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        claw.setPosition(1);
+        liftright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        liftleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        claw.setPosition(1);
         setMotorPowers(0);
 
         LF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -247,8 +250,8 @@ public class RobotHardware {
         LF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        RTL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        LTL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
         // Send telemetry message to signify robot waiting;
@@ -263,16 +266,16 @@ public class RobotHardware {
     }
 
     public void lift(double power){
-        RTL.setPower(power);
-        LTL.setPower(power);
+        liftright.setPower(power);
+        liftleft.setPower(power);
     }
 
     public void reset() {
-        RTL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        LTL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        liftright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        liftleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        RTL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        LTL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void PIDControl(double reference, double state) {
@@ -284,8 +287,8 @@ public class RobotHardware {
 
         double output = (error * p) + (integralSum * i) + (derivative * d);
 
-        RTL.setVelocity(output);
-        LTL.setVelocity(output);
+        liftright.setVelocity(output);
+        liftleft.setVelocity(output);
     }
 
     public void AutoPIDControl(double reference, String state) {
@@ -310,18 +313,18 @@ public class RobotHardware {
 
 
     public void liftTo(int pos) {
-        RTL.setTargetPosition(pos);
-        LTL.setTargetPosition(pos);
+        liftright.setTargetPosition(pos);
+        liftleft.setTargetPosition(pos);
 
-        RTL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        LTL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        liftright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        liftleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        while (Math.abs(RTL.getCurrentPosition() + LTL.getCurrentPosition()/2 - pos) < 100) {
-            PIDControl(pos, RTL.getCurrentPosition());
+        while (Math.abs(liftright.getCurrentPosition() + liftleft.getCurrentPosition()/2 - pos) < 100) {
+            PIDControl(pos, liftright.getCurrentPosition());
         }
 
-        RTL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        LTL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
     public void lifA() {
@@ -353,7 +356,7 @@ public class RobotHardware {
 
 
     public double getLiftAvg(){
-        return (RTL.getCurrentPosition() + LTL.getCurrentPosition())/ 2;
+        return (liftright.getCurrentPosition() + liftleft.getCurrentPosition())/ 2;
     }
 
     public boolean modeNameContains(String str) {

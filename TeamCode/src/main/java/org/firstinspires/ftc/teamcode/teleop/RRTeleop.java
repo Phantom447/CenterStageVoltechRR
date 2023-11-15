@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.misc.TankDrive;
 import org.firstinspires.ftc.teamcode.tuning.TuningOpModes;
-@TeleOp(name="GILBYGOBRRR", group="Pushbot")
+@TeleOp(name="roadrunner", group="Pushbot")
 public class RRTeleop extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         if (TuningOpModes.DRIVE_CLASS.equals(MecanumDrive.class)) {

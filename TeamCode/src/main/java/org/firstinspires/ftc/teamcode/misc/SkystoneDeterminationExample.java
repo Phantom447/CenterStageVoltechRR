@@ -25,7 +25,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.teleop.ColorDetectionTeleop_testing;
+import org.firstinspires.ftc.teamcode.Testing.ColorDetectionTeleop_testing;
 import org.firstinspires.ftc.teamcode.vision.ColorDetector;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
