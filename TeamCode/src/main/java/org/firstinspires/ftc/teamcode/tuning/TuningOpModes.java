@@ -21,8 +21,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegistrar;
 
 import org.firstinspires.ftc.robotcore.internal.opmode.OpModeMeta;
-import org.firstinspires.ftc.teamcode.config.TankDrive;
 import org.firstinspires.ftc.teamcode.config.MecanumDrive;
+import org.firstinspires.ftc.teamcode.config.TankDrive;
 import org.firstinspires.ftc.teamcode.config.ThreeDeadWheelLocalizer;
 import org.firstinspires.ftc.teamcode.config.TwoDeadWheelLocalizer;
 
@@ -77,7 +77,7 @@ public final class TuningOpModes {
                 }
 
                 return new DriveView(
-                        DriveType.MECANUM,
+                    DriveType.MECANUM,
                         MecanumDrive.PARAMS.inPerTick,
                         MecanumDrive.PARAMS.maxWheelVel,
                         MecanumDrive.PARAMS.minProfileAccel,
@@ -126,7 +126,7 @@ public final class TuningOpModes {
                 }
 
                 return new DriveView(
-                        DriveType.TANK,
+                    DriveType.TANK,
                         TankDrive.PARAMS.inPerTick,
                         TankDrive.PARAMS.maxWheelVel,
                         TankDrive.PARAMS.minProfileAccel,
