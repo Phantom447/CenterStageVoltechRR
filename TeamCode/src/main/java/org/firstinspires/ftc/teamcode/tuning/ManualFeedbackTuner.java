@@ -4,7 +4,9 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.MecanumDrive;
+import org.firstinspires.ftc.teamcode.config.MecanumDrive;
+import org.firstinspires.ftc.teamcode.config.ThreeDeadWheelLocalizer;
+import org.firstinspires.ftc.teamcode.config.TwoDeadWheelLocalizer;
 import org.firstinspires.ftc.teamcode.misc.TankDrive;
 
 public final class ManualFeedbackTuner extends LinearOpMode {
